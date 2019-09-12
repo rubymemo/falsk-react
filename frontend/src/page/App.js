@@ -1,14 +1,15 @@
 import React from 'react';
-import './App.css';
-import request from '../utils/request'
+import styles from './App.module.scss';
+import request from '../utils/request';
+import Sidebar from  './mainPage/sidebar/sidebar';
+import MainContent from  './mainPage/mainContent/mainContent';
 
 class App extends React.Component{
     state={
         data:null,
     };
     async componentDidMount(){
-
-        var result=await request({
+        let result=await request({
             url:'/test',
             method:'POST',
             data:{'info':200}});
@@ -18,8 +19,9 @@ class App extends React.Component{
     }
     render(){
         return(
-            <div className="App">
-                {this.state.data}
+            <div className={styles.wrapper}>
+                <Sidebar/>
+                <MainContent/>
             </div>
         );
     }

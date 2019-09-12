@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+.wrapper{
+  width: 100%;
+  .navbar-default{
+    border: 0px solid #1f2837;
+  }
+  .top-navbar{
+    background: #ffffff;
+    border-bottom: none;
+    margin: 0px;
+    position: fixed;
+    width: 100%;
+    z-index: 300;
+    -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  }
+}
+.navbar{
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  color: #fff;
+  background-color: #ee6e73;
+  width: 100%;
+}

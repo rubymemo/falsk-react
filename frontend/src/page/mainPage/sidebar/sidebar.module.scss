@@ -1,0 +1,89 @@
+.main-siderbar{
+  position: fixed;
+  width: 14%;
+  left: 0;
+  height: calc(100vh);
+  background: #fff;
+  z-index: 100;
+  will-change: transform;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  box-shadow: 0 0.125rem 9.375rem rgba(90,97,105,.1), 0 0.25rem 0.5rem rgba(90,97,105,.12), 0 0.9375rem 1.375rem rgba(90,97,105,.1), 0 0.4375rem 2.1875rem rgba(165,182,201,.1);
+  .main-navbar{
+    text-align: center;
+    .navbar{
+      height: 3.75rem;
+    }
+    .navbar-brand{
+      overflow: hidden;
+      height: 3.75rem;
+      line-height: 2.75rem;
+      font-size: 1rem;
+    }
+  }
+  .nav-wrapper{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 3.75rem - 1px);
+  }
+  .nav{
+     .nav-item{
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+       will-change: background-color,box-shadow,color;
+       transition: box-shadow .2s ease,color .2s ease,background-color .2s ease;
+       font-size: .85rem;
+       .nav-link.active{
+         box-shadow: inset 0.1875rem 0 0 #5A6169;
+         background-color: #FBFBFB;
+         color: #5A6169;
+       }
+       .nav-link{
+         border-bottom: 1px solid #e1e5eb;
+         font-weight: 400;
+         color: #3D5170;
+         padding: 0.9375rem 1.5625rem;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+         will-change: background-color, box-shadow, color;
+         transition: box-shadow 200ms ease, color 200ms ease, background-color 200ms ease;
+         font-size: 0.85rem;
+       }
+       .nav-link:hover{
+         box-shadow: inset 0.1875rem 0 0 #5A6169;
+         background-color: #FBFBFB;
+         color: #5A6169;
+       }
+     }
+  }
+}
+.navbar-brand{
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  white-space: nowrap;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+.nav{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  font-size: .875rem;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.flex-column{
+  flex-direction: column!important;
+}
+.nav-link {
+  display: block;
+  padding: .5rem 1rem;
+}

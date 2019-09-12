@@ -1,0 +1,26 @@
+.card-small{
+  box-shadow: 0 2px 0 rgba(90,97,105,.11), 0 4px 8px rgba(90,97,105,.12), 0 10px 10px rgba(90,97,105,.06), 0 7px 70px rgba(90,97,105,.1);
+}
+.card{
+  background-color: #fff;
+  border: none;
+  border-radius: .625rem;
+}
+.card-header {
+  padding: 1.09375rem 1.875rem;
+  background-color: #fff;
+  border-bottom: none;
+}
+.border-bottom {
+  border-bottom: 1px solid #e1e5eb;
+}
+.card-header:first-child {
+  border-radius: .625rem .625rem 0 0;
+}
+.m-0{
+  margin: 0!important;
+}
+h6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
