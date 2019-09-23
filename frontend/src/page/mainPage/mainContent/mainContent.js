@@ -1,5 +1,8 @@
 import React from 'react';
-import {Row,Col}  from 'react-bootstrap';
+import {Card,Row,Col}  from 'react-bootstrap';
+import ControlPanel from '../ControlPanel/ControlPanel';
+import PicPanel from '../PicPanel/PicPanel';
+import TextPanel from '../TextPanel/TextPanel';
 import HYcard from '../card/card';
 import './mainContent.scss'
 const styles={
@@ -22,33 +25,6 @@ const styles={
     }
 };
 
-// function ColItem() {
-//     const moduleCard=[
-//         {
-//             name:'文段池',
-//             value:'text',
-//             size:[4,6,12],
-//             content:[]
-//         },
-//         {
-//             name:'图片池',
-//             value:'picture',
-//             size:[5,12,12],
-//         },{
-//             name:'控制面板',
-//             value:'controlPanel',
-//             size:[3,12,12],
-//         }];
-//     const ColItems=moduleCard.map((item,index)=>
-//         <Col key={index} lg={item.size[0]} md={item.size[1]} sm={item.size[2]} ><HYcard content={item.content} cardvalue={item.value} cardname={item.name}/></Col>
-//     );
-//     return(
-//         <Row>
-//             {ColItems}
-//         </Row>
-//     )
-// }
-
 class MainContent extends React.Component{
     constructor(props){
         super(props);
@@ -56,6 +32,16 @@ class MainContent extends React.Component{
             text: [],
             pictures:[],
         }
+    }
+    getText(data){
+        this.setState({
+            text:data
+        })
+    }
+    getPic(data){
+        this.setState({
+            pictures:data
+        })
     }
     render(){
         return(
@@ -68,9 +54,25 @@ class MainContent extends React.Component{
                 </div>
                 <div style={styles.mainContentContainer}>
                     <Row>
-                        <Col lg="4" md="6" sm="12"><HYcard parvalue={this.state} cardvalue="text" cardname="文段池"/></Col>
-                        <Col lg="5" md="12" sm="12"><HYcard parvalue={this.state} cardvalue="picture" cardname="图片池"/></Col>
-                        <Col lg="3" md="12" sm="12"><HYcard parvalue={this.state} cardvalue="controlPanel" cardname="控制面板"/></Col>
+                        <Col lg="4" md="6" sm="12">
+                            <HYcard cardvalue="text" cardname="文段池">
+                                <Card.Body>
+                                    <TextPanel content={this.state.text}/>
+                                </Card.Body>
+                            </HYcard>
+                        </Col>
+                        <Col lg="5" md="12" sm="12">
+                            <HYcard cardvalue="picture" cardname="图片池">
+                                <Card.Body>
+                                    <PicPanel content={this.state.pictures}/>
+                                </Card.Body>
+                            </HYcard>
+                        </Col>
+                        <Col lg="3" md="12" sm="12">
+                            <HYcard cardvalue="controlPanel" cardname="控制面板">
+                                <ControlPanel getText={this.getText.bind(this)} getPic={this.getPic.bind(this)}/>
+                            </HYcard>
+                        </Col>
                     </Row>
                 </div>
             </div>

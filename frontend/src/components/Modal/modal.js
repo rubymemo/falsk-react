@@ -124,7 +124,7 @@ Modal.propTypes = {
     onOk: PropTypes.func,
     okText: PropTypes.string,
     cancelText: PropTypes.string,
-    type: PropTypes.oneOf(['alert', 'confirm', 'error']),
+    type: PropTypes.oneOf(['alert', 'confirm', 'error','success']),
     onRest: PropTypes.func
 };
 

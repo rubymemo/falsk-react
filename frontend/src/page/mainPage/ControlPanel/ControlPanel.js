@@ -1,8 +1,10 @@
 import React from 'react';
 import Modal from  '@/components/Modal';
+import FetchUpload from  '@/components/FetchUpload/FetchUpload';
 import {Button,Collapse,Form,Row,Col} from 'react-bootstrap';
 import request from '@/utils/request';
 import styles from  './ControlPanel.module.scss';
+import util from '@/utils/util';
 
 
 class ControlPanel extends React.Component{
@@ -17,7 +19,9 @@ class ControlPanel extends React.Component{
                 {name:"时尚",selected:false},
                 {name:"涂鸦",selected:false}],
             url:'fff',
-            open:true
+            open:true,
+            text: [],
+            pictures:[],
         };
         // this.handleClick=this.handleClick.bind(this);
     }
@@ -31,44 +35,69 @@ class ControlPanel extends React.Component{
             label:res,
         })
     }
-    inputChange(e){
-        this.setState({
-            url:e.target.value,
-        })
-    }
-    vaildUrl(){
-        let textName=this.state.url.split('\\').pop();
-        let suffix=textName.split('.').pop();
-        if(suffix==='txt'){
-            return true;
-        }else {
+    vaildFactor(){
+        if(this.state.text.length===0||this.state.pictures.length===0){
             return false;
+        }else{
+            let count=0;
+            for(let item of this.state.label){
+                if(item.selected){
+                    count++;
+                }
+            }
+            return count===1?true:false;
         }
     }
-    async splitTxt(){
-        if(this.vaildUrl()){
-            let result=await request({
-                url:'/splitarticle',
-                method:'POST',
-                data:{
-                    articleUrl:this.state.url
-                }});
-            if (Array.isArray(result.data)){
-                this.props.getText(result.data);
-            }else{
-                Modal.error({
-                    title: result.data,
-                    content: '请选择正确的文档格式，支持的文档格式有.txt',
-                    okText: '确认',
-                    cancelText: '取消',
-                    onOk: () => console.log('ok'),
-                    onCancel: () => console.log('cancel')
-                })
-            }
+    async generate(){
+        if(this.vaildFactor()){
+            let newJson=util.createNewData(this.state.text,this.state.pictures);
+            console.log(newJson);
+            // let result=await request({
+            //     url:'/createnews',
+            //     method:'POST',
+            //     data:newJson
+            // });
+            // console.log(result);
+            Modal.success({
+                title: '已成功生成新闻',
+                content: '可往下滑动查看',
+                okText: '确认',
+                cancelText: '取消',
+                onOk: () => console.log('ok'),
+                onCancel: () => console.log('cancel')
+            })
         }else{
             Modal.error({
-                title: '文档选择不正确',
-                content: '请选择正确的文档格式，支持的文档格式有.txt',
+                title: '不知道啥问题反正是错了',
+                content: '可能是后台传的数据有问题反正好好检查一下吧',
+                okText: '确认',
+                cancelText: '取消',
+                onOk: () => console.log('ok'),
+                onCancel: () => console.log('cancel')
+            })
+        }
+
+    }
+    getText(data){
+        this.setState({
+            text:data,
+        });
+        this.props.getText(data);
+    }
+    async getImg(){
+        let result=await request({
+            url:'/getpic',
+            method:'GET',
+        });
+        if(Array.isArray(result.data)){
+           this.props.getPic(result.data);
+            this.setState({
+                pictures: result.data
+            })
+        }else{
+            Modal.error({
+                title: '不知道啥问题反正是错了',
+                content: '可能是后台传的数据有问题反正好好检查一下吧',
                 okText: '确认',
                 cancelText: '取消',
                 onOk: () => console.log('ok'),
@@ -81,21 +110,15 @@ class ControlPanel extends React.Component{
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                     <div className={styles["colcenter"]}>
-                        <form action="UploadOneServlet" method="post" name="f_upload" encType="multipart/form-data">
-                            <label className={styles["file-input-container"]}><input onChange={(e)=>this.inputChange(e)} type="file" name="filename" />选择文档</label>
-                            <input onChange={(e)=>this.inputChange(e)} className={styles["url-input"]} placeholder="或输入链接" value={this.state.url}/>
-                        </form>
+                        <FetchUpload getText={this.getText.bind(this)}/>
                     </div>
-                    <div className={styles["split-line"]}></div>
+                    <div className={styles["split-line"]}/>
                     <Row>
                         <Col>
-                            <div className={styles["colcenter"]}><Button onClick={this.splitTxt.bind(this)}>分割文档</Button></div>
-                        </Col>
-                        <Col>
-                            <div className={styles["colcenter"]}><Button>展示图片</Button></div>
+                            <div className={styles["colcenter"]}><Button onClick={this.getImg.bind(this)}>展示图片</Button></div>
                         </Col>
                     </Row>
-                    <div className={styles["split-line"]}></div>
+                    <div className={styles["split-line"]}/>
                     <div className="d-block my-2" onClick={ ()=> this.setState({ open: !this.state.open })}>
                         <span className={styles["span-link"]}>选择风格</span>
                     </div>
@@ -108,6 +131,7 @@ class ControlPanel extends React.Component{
                             </Form.Group>
                         </div>
                     </Collapse>
+                    <div className={styles["colcenter"]}><Button onClick={this.generate.bind(this)}>一键生成</Button></div>
                 </li>
             </ul>
         );

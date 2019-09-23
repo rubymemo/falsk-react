@@ -1,0 +1,46 @@
+.file-input-container{
+  -moz-align-items: center;
+  align-items: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  color: #767676;
+  background: #f8f8f8;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  font-size: 13px;
+  min-width: 70px;
+  max-width: 70px;
+  text-align: center;
+  margin-right: 10px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  input{
+    display: none;
+  }
+}
+.url-input{
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  -moz-appearance: textfield;
+  box-sizing: border-box;
+  -moz-flex: 1 1;
+  flex: 1 1;
+  font-size: 13px;
+  color: #767676;
+  padding: 4px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+}
+
+.file-select{
+ line-height: 36px;
+  span{
+    white-space: nowrap;
+  }
+}

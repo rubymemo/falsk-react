@@ -11,20 +11,17 @@ const styles={
 class TextPanel extends React.Component{
     constructor(props){
         super(props);
-        console.log(props)
         this.state={
             textArr:props.content
         }
     }
     componentWillReceiveProps(nextProps){
-        console.log(nextProps)
         this.setState({
             textArr: nextProps.content
         })
     }
     Content(){
         if((this.state.textArr instanceof Array)&&(this.state.textArr.length>0)){
-            console.log(this.state.textArr)
             const Item=this.state.textArr.map((item,index)=>
             {
                 return(<div style={styles.textContent} key={index}>{item}</div>)

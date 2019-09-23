@@ -1,0 +1,29 @@
+.card-post{
+  display: inline-block;
+  width: 45%;
+  margin: 0 0.5rem 1rem;
+  box-shadow: 1px 3px 9px rgba(90, 97, 105, 0.11);
+    .card-post-image{
+    position: relative;
+    min-height: 10.3125rem;
+    border-top-left-radius: .625rem;
+    border-top-right-radius: .625rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .card-des:last-child{
+    border-radius: 0 0 .625rem .625rem;
+  }
+  .card-des{
+    padding: 1.5625rem 1.5625rem;
+    p{
+      font-size: 15px;
+      font-weight: 500;
+      color:#5a6169;
+    }
+  }
+}
+.card-post:hover{
+  transform: translateY(-.2rem);
+}
